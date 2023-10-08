@@ -1,0 +1,18 @@
+buildscript {
+    ext.ksp_version = "1.8.0-1.0.9"
+    ext.kotlin_version = "1.8.0"
+    repositories {
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+        gradlePluginPortal()
+        google()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        //other dependencies here
+    }
+}
