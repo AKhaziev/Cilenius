@@ -2,16 +2,19 @@ package com.example.cilenius.presention
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+
+
 import androidx.lifecycle.ViewModelProvider
 import com.example.cilenius.R
 import com.example.cilenius.databinding.ActivityCoinPriceListBinding
 import com.example.cilenius.domain.CoinInfo
 import com.example.cilenius.presention.adapters.CoinInfoAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class CoinPriceListActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: CoinViewModel
+    private val viewModel by viewModel<CoinViewModel>()
 
     private val binding by lazy {
         ActivityCoinPriceListBinding.inflate(layoutInflater)
@@ -21,8 +24,6 @@ class CoinPriceListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-        viewModel = ViewModelProvider(this, CoinViewModelProvider(application))[CoinViewModel::class.java]
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinInfo) {

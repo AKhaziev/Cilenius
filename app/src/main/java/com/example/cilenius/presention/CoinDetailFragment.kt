@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cilenius.databinding.FragmentCoinDetailBinding
 import com.squareup.picasso.Picasso
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CoinDetailFragment : Fragment() {
 
-    private lateinit var viewModel: CoinViewModel
+    //    private lateinit var viewModel: CoinViewModel
+    private val viewModel by viewModel<CoinViewModel>()
 
 //    private val binding by lazy {
 //        ActivityCoinDetailBinding.inflate(layoutInflater)
@@ -35,10 +37,6 @@ class CoinDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val fromSymbol = getSymbol()
 
-        viewModel = ViewModelProvider(
-            this,
-            CoinViewModelProvider(requireActivity().application)
-        )[CoinViewModel::class.java]
         viewModel.getDetailInfo(fromSymbol).observe(viewLifecycleOwner) {
             with(binding) {
                 Log.d("DETAIL_INFO", it.toString())
