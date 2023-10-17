@@ -91,4 +91,11 @@ dependencies {
 
     implementation 'com.google.dagger:dagger:2.44'
     kapt 'com.google.dagger:dagger-compiler:2.44'
+
+    // DI Koin
+    def koin_version = "3.5.0"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-test:$koin_version"
+
 }
