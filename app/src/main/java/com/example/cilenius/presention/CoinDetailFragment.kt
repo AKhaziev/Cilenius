@@ -35,7 +35,10 @@ class CoinDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val fromSymbol = getSymbol()
 
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            CoinViewModelProvider(requireActivity().application)
+        )[CoinViewModel::class.java]
         viewModel.getDetailInfo(fromSymbol).observe(viewLifecycleOwner) {
             with(binding) {
                 Log.d("DETAIL_INFO", it.toString())
@@ -70,6 +73,6 @@ class CoinDetailFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding == null
+        _binding = null
     }
 }

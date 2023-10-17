@@ -1,9 +1,7 @@
 package com.example.cilenius.presention
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cilenius.R
 import com.example.cilenius.databinding.ActivityCoinPriceListBinding
@@ -23,7 +21,8 @@ class CoinPriceListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
+
+        viewModel = ViewModelProvider(this, CoinViewModelProvider(application))[CoinViewModel::class.java]
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinPriceInfo: CoinInfo) {

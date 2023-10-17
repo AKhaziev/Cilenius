@@ -1,15 +1,13 @@
 package com.example.cilenius.presention
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.ViewModel
 import com.example.cilenius.data.repository.CoinRepositoryImpl
 import com.example.cilenius.domain.GetCoinInfoListUseCase
 import com.example.cilenius.domain.GetCoinInfoUseCase
 import com.example.cilenius.domain.LoadDataUseCase
-import kotlinx.coroutines.launch
 
-class CoinViewModel(application: Application) : AndroidViewModel(application) {
+class CoinViewModel(application: Application) : ViewModel() {
 
 
     private val repository = CoinRepositoryImpl(application)
