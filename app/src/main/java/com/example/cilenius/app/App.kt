@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.cilenius.di.appModule
 import com.example.cilenius.di.dataModule
 import com.example.cilenius.di.domainModule
+import com.example.cilenius.di.retrofitModule
 import com.example.cilenius.di.roomModule
 import com.example.cilenius.di.workerModule
 import org.koin.android.ext.koin.androidContext
@@ -24,7 +25,8 @@ class App: Application() {
                 dataModule,
                 domainModule,
                 roomModule,
-                workerModule
+                workerModule,
+                retrofitModule
             ))
         }
     }

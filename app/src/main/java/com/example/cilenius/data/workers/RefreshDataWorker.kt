@@ -7,7 +7,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkerParameters
 import com.example.cilenius.data.database.CoinInfoDao
 import com.example.cilenius.data.mapper.CoinMapper
-import com.example.cilenius.data.network.ApiFactory
+import com.example.cilenius.data.network.ApiService
 import kotlinx.coroutines.delay
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -16,10 +16,12 @@ import org.koin.core.component.inject
 class RefreshDataWorker(
     context: Context,
     workerParameters: WorkerParameters,
+//    private val coinInfoDao: CoinInfoDao,
+//    private val apiService: ApiService
 ): CoroutineWorker(context, workerParameters), KoinComponent {
 
     private val coinInfoDao: CoinInfoDao by inject()
-    private val apiService = ApiFactory.apiService
+    private val apiService: ApiService by inject()
 
     private val mapper = CoinMapper()
 
