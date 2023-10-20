@@ -23,7 +23,7 @@ class RefreshDataWorker(
     private val coinInfoDao: CoinInfoDao by inject()
     private val apiService: ApiService by inject()
 
-    private val mapper = CoinMapper()
+    private val mapper: CoinMapper by inject()
 
     override suspend fun doWork(): Result {
         while (true) {

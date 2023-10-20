@@ -1,6 +1,5 @@
 package com.example.cilenius.data.repository
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import androidx.work.ExistingWorkPolicy
@@ -10,18 +9,14 @@ import com.example.cilenius.data.mapper.CoinMapper
 import com.example.cilenius.data.workers.RefreshDataWorker
 import com.example.cilenius.domain.CoinInfo
 import com.example.cilenius.domain.CoinRepository
+import org.koin.core.component.KoinComponent
 
 class CoinRepositoryImpl(
-    private val application: Application,
     private val coinInfoDao: CoinInfoDao,
-    private val mapper: CoinMapper
-): CoinRepository
-{
+    private val mapper: CoinMapper,
+    private val workManager: WorkManager,
 
-//    private val coinInfoDao = AppDatabase.getInstance(application).coinPriceInfoDao()
-
-//    private val mapper = CoinMapper()
-
+    ) : CoinRepository, KoinComponent {
     override fun getCoinInfoList(): LiveData<List<CoinInfo>> {
         return coinInfoDao.getPriceList().map {
             it.map {
@@ -38,7 +33,7 @@ class CoinRepositoryImpl(
 
     override fun loadData() {
 
-        val workManager = WorkManager.getInstance(application)
+//        val workManager = WorkManager.getInstance(application)
         workManager.enqueueUniqueWork(
             RefreshDataWorker.NAME, ExistingWorkPolicy.REPLACE, RefreshDataWorker.makeRequest()
         )

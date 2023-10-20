@@ -9,10 +9,12 @@ import com.example.cilenius.di.roomModule
 import com.example.cilenius.di.workerModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.workmanager.koin.workManagerFactory
+import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-class App: Application() {
+class App: Application(), KoinComponent {
 
     override fun onCreate() {
         super.onCreate()
@@ -20,6 +22,7 @@ class App: Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@App)
+            workManagerFactory()
             modules(listOf(
                 appModule,
                 dataModule,

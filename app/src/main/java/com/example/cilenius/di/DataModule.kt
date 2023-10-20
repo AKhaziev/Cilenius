@@ -13,7 +13,7 @@ val dataModule = module {
     }
 
     single<CoinRepository> {
-        CoinRepositoryImpl(application = get(), coinInfoDao = get(), mapper = get())
+        CoinRepositoryImpl( coinInfoDao = get(), mapper = get(), get())
     }
 
 }
